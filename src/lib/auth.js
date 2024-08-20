@@ -33,6 +33,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
   ...authConfig,
   providers: [
     GitHub({

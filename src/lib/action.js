@@ -87,6 +87,7 @@ export const deleteUser = async (formData) => {
 
 export const handleGithubLogin = async () => {
   "use server";
+  console.log("handlelogin called")
   await signIn("github");
 };
 
@@ -104,7 +105,7 @@ export const register = async (previousState, formData) => {
   }
 
   try {
-    connectToDb();
+   await  connectToDb();
 
     const user = await User.findOne({ username });
 
@@ -134,7 +135,6 @@ export const register = async (previousState, formData) => {
 
 export const login = async (prevState, formData) => {
   const { username, password } = Object.fromEntries(formData);
-
   try {
     await signIn("credentials", { username, password });
   } catch (err) {
